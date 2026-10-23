@@ -1,0 +1,54 @@
+\begin{table}[htbp]
+\centering
+\caption{Repeated CV: Nadeau-Bengio corrected t-tests of macro-F1 against the Joint ensemble (Holm).}
+\label{tab:table7_cv_tests_vs_joint}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{system} & \textbf{mean diff} & \textbf{t} & \textbf{p value} & \textbf{p holm} \\
+\midrule
+SVM [TF-IDF+SVD (transductive)] & 0.000 & 0.004 & 0.997 & 1.000 \\
+Random Forest [TF-IDF+SVD (transductive)] & -0.002 & -0.123 & 0.903 & 1.000 \\
+SVM [te3-large] & -0.009 & -0.346 & 0.732 & 1.000 \\
+Ensemble-fixed [TF-IDF+SVD (transductive)] & -0.011 & -0.670 & 0.509 & 1.000 \\
+XGBoost [TF-IDF+SVD (transductive)] & -0.011 & -0.739 & 0.467 & 1.000 \\
+kNN [TF-IDF+SVD (transductive)] & -0.015 & -0.996 & 0.329 & 1.000 \\
+XGBoost [te3-large] & -0.024 & -0.956 & 0.349 & 1.000 \\
+Ensemble-inner\_cv [te3-large] & -0.026 & -1.017 & 0.319 & 1.000 \\
+Claude 5 Sonnet (zero-shot) & -0.036 & -1.362 & 0.186 & 1.000 \\
+Ensemble-inner\_cv [TF-IDF+SVD (inductive)] & -0.039 & -1.818 & 0.082 & 0.979 \\
+Gemma 4 31B (ASU) (zero-shot) & -0.042 & -1.691 & 0.104 & 1.000 \\
+SVM [TF-IDF+SVD (inductive)] & -0.044 & -2.135 & 0.043 & 0.690 \\
+Random Forest [TF-IDF+SVD (inductive)] & -0.046 & -1.997 & 0.057 & 0.860 \\
+GPT-6 Sol (zero-shot) & -0.049 & -2.253 & 0.034 & 0.593 \\
+GPT-6 Luna (zero-shot) & -0.051 & -1.984 & 0.059 & 0.860 \\
+XGBoost [TF-IDF+SVD (inductive)] & -0.053 & -2.263 & 0.033 & 0.593 \\
+Naive Bayes [TF-IDF+SVD (transductive)] & -0.055 & -2.792 & 0.010 & 0.243 \\
+Gemini 3.1 Pro (zero-shot) & -0.058 & -1.894 & 0.070 & 0.914 \\
+Ensemble-fixed [te3-large] & -0.058 & -1.818 & 0.082 & 0.979 \\
+Random Forest [te3-large] & -0.058 & -2.377 & 0.026 & 0.490 \\
+Llama 4 Maverick (zero-shot) & -0.060 & -2.460 & 0.021 & 0.430 \\
+Naive Bayes [TF-IDF+SVD (inductive)] & -0.068 & -3.030 & 0.006 & 0.150 \\
+Ensemble-fixed [TF-IDF+SVD (inductive)] & -0.069 & -2.546 & 0.018 & 0.390 \\
+kNN [TF-IDF+SVD (inductive)] & -0.070 & -2.688 & 0.013 & 0.296 \\
+DeepSeek V4 Pro (zero-shot) & -0.071 & -3.078 & 0.005 & 0.139 \\
+Llama 4 Scout (ASU) (zero-shot) & -0.086 & -3.176 & 0.004 & 0.114 \\
+kNN [te3-large] & -0.088 & -2.539 & 0.018 & 0.390 \\
+Naive Bayes [te3-large] & -0.098 & -3.876 & 0.001 & 0.022 \\
+Nova 2 Lite (zero-shot) & -0.103 & -3.006 & 0.006 & 0.153 \\
+gpt-oss-120b (zero-shot) & -0.110 & -3.353 & 0.003 & 0.077 \\
+DBSCAN [TF-IDF+SVD (transductive)] & -0.142 & -4.427 & 0.000 & 0.006 \\
+DBSCAN [TF-IDF+SVD (inductive)] & -0.204 & -6.281 & 0.000 & 0.000 \\
+ImpKmeans [te3-large] & -0.227 & -6.164 & 0.000 & 0.000 \\
+k-means [TF-IDF+SVD (transductive)] & -0.234 & -7.973 & 0.000 & 0.000 \\
+ImpKmeans [TF-IDF+SVD (transductive)] & -0.280 & -7.821 & 0.000 & 0.000 \\
+ImpKmeans [TF-IDF+SVD (inductive)] & -0.286 & -7.532 & 0.000 & 0.000 \\
+GMM [TF-IDF+SVD (transductive)] & -0.302 & -7.587 & 0.000 & 0.000 \\
+GMM [TF-IDF+SVD (inductive)] & -0.305 & -7.233 & 0.000 & 0.000 \\
+k-means [TF-IDF+SVD (inductive)] & -0.307 & -9.191 & 0.000 & 0.000 \\
+GMM [te3-large] & -0.324 & -6.750 & 0.000 & 0.000 \\
+k-means [te3-large] & -0.325 & -8.109 & 0.000 & 0.000 \\
+DBSCAN [te3-large] & -0.489 & -16.031 & 0.000 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{table}

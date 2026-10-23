@@ -1,0 +1,65 @@
+\begin{table}[htbp]
+\centering
+\caption{Official SEConvo split (40/360), Phase 1, all systems. Positive class = malicious; macro = unweighted class mean. McNemar vs the Joint ensemble (Holm).}
+\label{tab:table1_official_phase1_all}
+\small
+\begin{tabular}{lccccccc}
+\toprule
+\textbf{system} & \textbf{accuracy} & \textbf{precision mal} & \textbf{recall mal} & \textbf{f1 mal} & \textbf{macro f1} & \textbf{mcc} & \textbf{auroc} \\
+\midrule
+Gemma 4 31B (ASU) (few-shot k=4) & 0.853 & 0.856 & 0.869 & 0.862 & 0.852 & 0.704 & 0.922 \\
+Gemini 3.1 Pro (few-shot k=4) & 0.844 & 0.820 & 0.906 & 0.861 & 0.842 & 0.690 & 0.909 \\
+DeepSeek V4 Pro (few-shot k=4) & 0.831 & 0.812 & 0.885 & 0.847 & 0.829 & 0.661 & 0.906 \\
+Claude 5 Sonnet (zero-shot) & 0.833 & 0.781 & 0.953 & 0.858 & 0.828 & 0.680 & 0.913 \\
+GPT-6 Sol (few-shot k=4) & 0.831 & 0.801 & 0.906 & 0.850 & 0.828 & 0.664 & 0.919 \\
+GPT-6 Luna (few-shot k=4) & 0.822 & 0.813 & 0.864 & 0.838 & 0.821 & 0.643 & 0.898 \\
+Gemma 4 31B (ASU) (zero-shot) & 0.822 & 0.804 & 0.880 & 0.840 & 0.820 & 0.644 & 0.889 \\
+SVM [TF-IDF+SVD (transductive)] & 0.822 & 0.804 & 0.880 & 0.840 & 0.820 & 0.644 & 0.907 \\
+Claude 5 Sonnet (few-shot k=4) & 0.822 & 0.798 & 0.890 & 0.842 & 0.820 & 0.645 & 0.913 \\
+GPT-6 Sol (zero-shot) & 0.819 & 0.774 & 0.932 & 0.846 & 0.814 & 0.649 & 0.889 \\
+GPT-6 Luna (zero-shot) & 0.819 & 0.762 & 0.958 & 0.849 & 0.812 & 0.657 & 0.887 \\
+Ensemble-inner\_cv [TF-IDF+SVD (transductive)] & 0.808 & 0.793 & 0.864 & 0.827 & 0.806 & 0.616 & 0.885 \\
+Llama 4 Maverick (few-shot k=4) & 0.803 & 0.837 & 0.780 & 0.808 & 0.803 & 0.607 & 0.878 \\
+Random Forest [TF-IDF+SVD (transductive)] & 0.803 & 0.816 & 0.812 & 0.814 & 0.802 & 0.604 & 0.874 \\
+Llama 4 Maverick (zero-shot) & 0.808 & 0.761 & 0.932 & 0.838 & 0.802 & 0.628 & 0.866 \\
+Gemini 3.1 Pro (zero-shot) & 0.808 & 0.761 & 0.932 & 0.838 & 0.802 & 0.628 & 0.883 \\
+Ensemble-inner\_cv [te3-large] & 0.794 & 0.810 & 0.801 & 0.805 & 0.794 & 0.588 & 0.844 \\
+Ensemble-fixed [TF-IDF+SVD (transductive)] & 0.794 & 0.777 & 0.859 & 0.816 & 0.792 & 0.588 & 0.861 \\
+DeepSeek V4 Pro (zero-shot) & 0.800 & 0.745 & 0.948 & 0.834 & 0.791 & 0.619 & 0.891 \\
+kNN [TF-IDF+SVD (transductive)] & 0.789 & 0.780 & 0.838 & 0.808 & 0.787 & 0.576 & 0.856 \\
+SVM [te3-large] & 0.781 & 0.789 & 0.801 & 0.795 & 0.779 & 0.559 & 0.863 \\
+Llama 4 Scout (ASU) (zero-shot) & 0.778 & 0.794 & 0.785 & 0.789 & 0.777 & 0.554 & 0.824 \\
+Ensemble-fixed [te3-large] & 0.778 & 0.776 & 0.817 & 0.796 & 0.776 & 0.553 & 0.829 \\
+Random Forest [te3-large] & 0.775 & 0.793 & 0.780 & 0.786 & 0.774 & 0.549 & 0.855 \\
+Nova 2 Lite (zero-shot) & 0.758 & 0.847 & 0.665 & 0.745 & 0.758 & 0.535 & 0.839 \\
+Llama 4 Scout (ASU) (few-shot k=4) & 0.758 & 0.866 & 0.644 & 0.739 & 0.757 & 0.543 & 0.833 \\
+gpt-oss-120b (zero-shot) & 0.747 & 0.794 & 0.707 & 0.748 & 0.747 & 0.500 & 0.857 \\
+Naive Bayes [te3-large] & 0.753 & 0.724 & 0.864 & 0.788 & 0.746 & 0.509 & 0.768 \\
+Naive Bayes [TF-IDF+SVD (inductive)] & 0.756 & 0.705 & 0.927 & 0.801 & 0.742 & 0.531 & 0.833 \\
+XGBoost [TF-IDF+SVD (transductive)] & 0.739 & 0.765 & 0.733 & 0.749 & 0.738 & 0.478 & 0.825 \\
+Nova 2 Lite (few-shot k=4) & 0.736 & 0.848 & 0.613 & 0.711 & 0.734 & 0.501 & 0.825 \\
+XGBoost [te3-large] & 0.733 & 0.729 & 0.791 & 0.759 & 0.730 & 0.464 & 0.827 \\
+gpt-oss-120b (few-shot k=4) & 0.728 & 0.872 & 0.571 & 0.690 & 0.724 & 0.499 & 0.864 \\
+Random Forest [TF-IDF+SVD (inductive)] & 0.722 & 0.716 & 0.791 & 0.751 & 0.718 & 0.441 & 0.760 \\
+kNN [te3-large] & 0.692 & 0.720 & 0.686 & 0.702 & 0.691 & 0.383 & 0.723 \\
+XGBoost [TF-IDF+SVD (inductive)] & 0.689 & 0.695 & 0.738 & 0.716 & 0.686 & 0.374 & 0.718 \\
+Naive Bayes [TF-IDF+SVD (transductive)] & 0.706 & 0.648 & 0.974 & 0.778 & 0.670 & 0.467 & 0.846 \\
+GMM [TF-IDF+SVD (transductive)] & 0.575 & 0.640 & 0.455 & 0.532 & 0.571 & 0.170 & 0.583 \\
+GMM [te3-large] & 0.561 & 0.599 & 0.524 & 0.559 & 0.561 & 0.127 & 0.564 \\
+Ensemble-inner\_cv [TF-IDF+SVD (inductive)] & 0.633 & 0.592 & 0.995 & 0.742 & 0.554 & 0.353 & 0.828 \\
+kNN [TF-IDF+SVD (inductive)] & 0.614 & 0.579 & 0.995 & 0.732 & 0.520 & 0.312 & 0.719 \\
+k-means [te3-large] & 0.539 & 0.637 & 0.304 & 0.411 & 0.516 & 0.124 & 0.554 \\
+DBSCAN [TF-IDF+SVD (transductive)] & 0.561 & 0.555 & 0.869 & 0.678 & 0.495 & 0.109 & 0.573 \\
+k-means [TF-IDF+SVD (transductive)] & 0.500 & 0.550 & 0.319 & 0.404 & 0.487 & 0.025 & 0.500 \\
+ImpKmeans [te3-large] & 0.511 & 0.529 & 0.717 & 0.609 & 0.479 & -0.005 & 0.500 \\
+SVM [TF-IDF+SVD (inductive)] & 0.586 & 0.562 & 1.000 & 0.719 & 0.466 & 0.258 & 0.824 \\
+DBSCAN [TF-IDF+SVD (inductive)] & 0.581 & 0.558 & 1.000 & 0.717 & 0.455 & 0.244 & 0.552 \\
+Ensemble-fixed [TF-IDF+SVD (inductive)] & 0.575 & 0.555 & 1.000 & 0.714 & 0.443 & 0.229 & 0.808 \\
+ImpKmeans [TF-IDF+SVD (inductive)] & 0.567 & 0.551 & 0.995 & 0.709 & 0.431 & 0.194 & 0.539 \\
+GMM [TF-IDF+SVD (inductive)] & 0.567 & 0.550 & 1.000 & 0.710 & 0.426 & 0.206 & 0.538 \\
+ImpKmeans [TF-IDF+SVD (transductive)] & 0.414 & 0.461 & 0.613 & 0.526 & 0.379 & -0.217 & 0.401 \\
+DBSCAN [te3-large] & 0.531 & 0.531 & 1.000 & 0.693 & 0.347 & 0.000 & 0.515 \\
+k-means [TF-IDF+SVD (inductive)] & 0.456 & 0.000 & 0.000 & 0.000 & 0.313 & -0.126 & 0.485 \\
+\bottomrule
+\end{tabular}
+\end{table}

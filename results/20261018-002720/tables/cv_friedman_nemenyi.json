@@ -1,0 +1,29 @@
+{
+  "avg_ranks": {
+    "SVM [TF-IDF+SVD (transductive)]": 3.98,
+    "Ensemble-inner_cv [TF-IDF+SVD (transductive)]": 4.06,
+    "Random Forest [TF-IDF+SVD (transductive)]": 4.42,
+    "kNN [TF-IDF+SVD (transductive)]": 5.46,
+    "XGBoost [TF-IDF+SVD (transductive)]": 5.5,
+    "Ensemble-fixed [TF-IDF+SVD (transductive)]": 5.68,
+    "Claude 5 Sonnet (zero-shot)": 7.66,
+    "Gemma 4 31B (ASU) (zero-shot)": 8.72,
+    "GPT-6 Sol (zero-shot)": 9.44,
+    "GPT-6 Luna (zero-shot)": 10.14,
+    "Gemini 3.1 Pro (zero-shot)": 10.5,
+    "Naive Bayes [TF-IDF+SVD (transductive)]": 10.98,
+    "Llama 4 Maverick (zero-shot)": 11.24,
+    "DeepSeek V4 Pro (zero-shot)": 12.88,
+    "Llama 4 Scout (ASU) (zero-shot)": 13.78,
+    "Nova 2 Lite (zero-shot)": 14.6,
+    "gpt-oss-120b (zero-shot)": 15.26,
+    "DBSCAN [TF-IDF+SVD (transductive)]": 17.02,
+    "k-means [TF-IDF+SVD (transductive)]": 19.08,
+    "ImpKmeans [TF-IDF+SVD (transductive)]": 20.2,
+    "GMM [TF-IDF+SVD (transductive)]": 20.4
+  },
+  "k": 21,
+  "N": 25,
+  "friedman_chi2": 368.6682279469165,
+  "friedman_p": 6.266334133719337e-66
+}

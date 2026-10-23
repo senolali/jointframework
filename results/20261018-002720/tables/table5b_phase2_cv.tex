@@ -1,0 +1,39 @@
+\begin{table}[htbp]
+\centering
+\caption{Phase 2 under 5-fold CV over the 400 annotated dialogues (Joint ensemble and OCDD selected in each training fold; pooled held-out predictions). McNemar Joint vs Dual-LLM and vs Joint without OCDD per judge (Holm).}
+\label{tab:table5b_phase2_cv}
+\small
+\begin{tabular}{lcccccccccccccccc}
+\toprule
+\textbf{workflow} & \textbf{judge} & \textbf{flagged} & \textbf{n spam like} & \textbf{n genuine} & \textbf{n fraudulent} & \textbf{type acc fraud} & \textbf{type acc genuine} & \textbf{fraud precision} & \textbf{fraud recall} & \textbf{fraud macro f1} & \textbf{fraud macro f1 lo} & \textbf{fraud macro f1 hi} & \textbf{mcnemar p holm} & \textbf{mcnemar p holm vs no ocdd} & \textbf{llm calls per conv} & \textbf{cost per 1k conv usd} \\
+\midrule
+Joint & GPT-6 Sol & 219 & 5 & 8 & 206 & 0.968 & 0.000 & 0.888 & 0.851 & 0.862 & 0.829 & 0.895 & 0.011 & 1.000 & 0.535 & 1.317 \\
+Dual-LLM & GPT-6 Sol & 257 & 2 & 4 & 251 & 0.980 & 0.000 & 0.769 & 0.898 & 0.794 & 0.753 & 0.834 & -- & -- & 1.637 & 4.209 \\
+Joint (no OCDD) & GPT-6 Sol & 219 & 0 & 10 & 209 & 0.963 & 0.045 & 0.885 & 0.860 & 0.865 & 0.830 & 0.897 & -- & -- & 0.547 & 1.351 \\
+Joint & Claude 5 Sonnet & 219 & 5 & 85 & 129 & 0.620 & 0.500 & 0.915 & 0.549 & 0.725 & 0.680 & 0.766 & 0.024 & 1.000 & 0.535 & 19.997 \\
+Dual-LLM & Claude 5 Sonnet & 262 & 2 & 94 & 166 & 0.627 & 0.316 & 0.765 & 0.591 & 0.682 & 0.634 & 0.725 & -- & -- & 1.650 & 30.421 \\
+Joint (no OCDD) & Claude 5 Sonnet & 219 & 0 & 88 & 131 & 0.611 & 0.455 & 0.901 & 0.549 & 0.720 & 0.675 & 0.761 & -- & -- & 0.547 & 20.527 \\
+Joint & Gemini 3.1 Pro & 219 & 5 & 26 & 188 & 0.888 & 0.000 & 0.894 & 0.781 & 0.832 & 0.795 & 0.866 & 0.007 & 1.000 & 0.535 & 4.534 \\
+Dual-LLM & Gemini 3.1 Pro & 262 & 8 & 24 & 230 & 0.893 & 0.036 & 0.765 & 0.819 & 0.765 & 0.721 & 0.805 & -- & -- & 1.635 & 11.856 \\
+Joint (no OCDD) & Gemini 3.1 Pro & 219 & 0 & 27 & 192 & 0.884 & 0.000 & 0.885 & 0.791 & 0.832 & 0.795 & 0.867 & -- & -- & 0.547 & 4.631 \\
+Joint & Llama 4 Maverick & 219 & 5 & 22 & 192 & 0.920 & 0.200 & 0.906 & 0.809 & 0.852 & 0.817 & 0.885 & 0.016 & 1.000 & 0.535 & 0.521 \\
+Dual-LLM & Llama 4 Maverick & 263 & 3 & 19 & 241 & 0.944 & 0.119 & 0.776 & 0.870 & 0.791 & 0.749 & 0.830 & -- & -- & 1.650 & 0.924 \\
+Joint (no OCDD) & Llama 4 Maverick & 219 & 0 & 24 & 195 & 0.921 & 0.273 & 0.908 & 0.823 & 0.860 & 0.826 & 0.892 & -- & -- & 0.547 & 0.537 \\
+Joint & gpt-oss-120b & 219 & 5 & 32 & 182 & 0.877 & 0.300 & 0.912 & 0.772 & 0.837 & 0.802 & 0.872 & 0.000 & 1.000 & 0.535 & 0.138 \\
+Dual-LLM & gpt-oss-120b & 194 & 2 & 4 & 188 & 0.987 & 0.050 & 0.798 & 0.698 & 0.742 & 0.698 & 0.787 & -- & -- & 1.480 & 0.408 \\
+Joint (no OCDD) & gpt-oss-120b & 219 & 0 & 34 & 185 & 0.879 & 0.364 & 0.914 & 0.786 & 0.845 & 0.810 & 0.880 & -- & -- & 0.547 & 0.141 \\
+Joint & Gemma 4 31B (ASU) & 219 & 5 & 2 & 212 & 0.995 & 0.000 & 0.887 & 0.874 & 0.872 & 0.839 & 0.904 & 0.024 & 1.000 & 0.535 & 0.132 \\
+Dual-LLM & Gemma 4 31B (ASU) & 234 & 2 & 2 & 230 & 0.995 & 0.022 & 0.804 & 0.860 & 0.810 & 0.771 & 0.847 & -- & -- & 1.580 & 0.314 \\
+Joint (no OCDD) & Gemma 4 31B (ASU) & 219 & 0 & 2 & 217 & 0.995 & 0.000 & 0.880 & 0.888 & 0.874 & 0.842 & 0.906 & -- & -- & 0.547 & 0.135 \\
+Joint & GPT-6 Luna & 219 & 5 & 22 & 192 & 0.909 & 0.100 & 0.896 & 0.800 & 0.842 & 0.806 & 0.877 & 0.024 & 1.000 & 0.535 & 0.069 \\
+Dual-LLM & GPT-6 Luna & 269 & 4 & 20 & 245 & 0.920 & 0.067 & 0.763 & 0.870 & 0.780 & 0.739 & 0.821 & -- & -- & 1.663 & 0.238 \\
+Joint (no OCDD) & GPT-6 Luna & 219 & 0 & 22 & 197 & 0.911 & 0.091 & 0.888 & 0.814 & 0.845 & 0.810 & 0.880 & -- & -- & 0.547 & 0.071 \\
+Joint & Nova 2 Lite & 219 & 5 & 35 & 101 & 0.759 & 0.143 & 0.871 & 0.409 & 0.634 & 0.587 & 0.679 & 0.024 & 1.000 & 0.535 & 1.809 \\
+Dual-LLM & Nova 2 Lite & 167 & 1 & 6 & 95 & 0.938 & 0.050 & 0.800 & 0.353 & 0.584 & 0.534 & 0.631 & -- & -- & 1.415 & 1.851 \\
+Joint (no OCDD) & Nova 2 Lite & 219 & 0 & 37 & 103 & 0.754 & 0.188 & 0.864 & 0.414 & 0.635 & 0.588 & 0.680 & -- & -- & 0.547 & 1.871 \\
+Joint & Llama 4 Scout (ASU) & 219 & 5 & 16 & 198 & 0.925 & 0.050 & 0.884 & 0.814 & 0.842 & 0.807 & 0.875 & 0.000 & 1.000 & 0.535 & 0.099 \\
+Dual-LLM & Llama 4 Scout (ASU) & 214 & 2 & 9 & 203 & 0.952 & 0.023 & 0.783 & 0.740 & 0.749 & 0.706 & 0.790 & -- & -- & 1.530 & 0.194 \\
+Joint (no OCDD) & Llama 4 Scout (ASU) & 219 & 0 & 17 & 202 & 0.921 & 0.045 & 0.876 & 0.823 & 0.842 & 0.806 & 0.877 & -- & -- & 0.547 & 0.101 \\
+\bottomrule
+\end{tabular}
+\end{table}

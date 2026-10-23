@@ -1,0 +1,11 @@
+{
+  "design": "normal",
+  "rep": "emb",
+  "dims": 10,
+  "nu": 0.5,
+  "q": 0.9,
+  "m": 2,
+  "rho": 0.5,
+  "label": "normal | embedding d=10 | q=0.9 m=2 rho=0.5 nu=0.5",
+  "drift_rate": 0.896
+}

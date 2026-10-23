@@ -1,0 +1,15 @@
+{
+  "TF-IDF+SVD (inductive)": {
+    "vocab": 1879,
+    "svd_components": 10,
+    "explained_var": 0.3353240826264347
+  },
+  "TF-IDF+SVD (transductive)": {
+    "vocab": 14861,
+    "svd_components": 10,
+    "explained_var": 0.07910475705728931
+  },
+  "te3-large": {
+    "dim": 3072
+  }
+}

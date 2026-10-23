@@ -1,0 +1,6 @@
+fold,selected,train_balanced,old_window
+0,normal | embedding d=10 | q=0.9 m=2 rho=0.5 nu=0.5,0.7225005965163446,W=2 m=1 rho=0.5 nu=0.1 initiator d=5
+1,normal | embedding d=10 | q=0.9 m=2 rho=0.5 nu=0.5,0.7125563584707554,W=2 m=1 rho=0.5 nu=0.1 initiator d=5
+2,normal | embedding d=10 | q=0.8 m=2 rho=0.5 nu=0.5,0.7135854341736695,W=2 m=1 rho=0.5 nu=0.1 initiator d=5
+3,normal | embedding d=10 | q=0.9 m=2 rho=0.5 nu=0.5,0.7018759955164887,W=2 m=1 rho=0.5 nu=0.1 initiator d=5
+4,normal | embedding d=10 | q=0.9 m=2 rho=0.5 nu=0.5,0.6953405017921147,W=2 m=1 rho=0.5 nu=0.1 initiator d=5

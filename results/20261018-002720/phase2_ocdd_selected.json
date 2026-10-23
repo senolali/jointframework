@@ -1,0 +1,54 @@
+{
+  "official": {
+    "design": "normal",
+    "rep": "emb",
+    "dims": 20,
+    "nu": 0.1,
+    "q": 0.5,
+    "m": 2,
+    "rho": 1.0,
+    "label": "normal | embedding d=20 | q=0.5 m=2 rho=1.0 nu=0.1"
+  },
+  "cv": [
+    {
+      "fold": 0,
+      "selected": "normal | embedding d=10 | q=0.9 m=2 rho=0.5 nu=0.5",
+      "train_balanced": 0.7225005965163446,
+      "old_window": "W=2 m=1 rho=0.5 nu=0.1 initiator d=5"
+    },
+    {
+      "fold": 1,
+      "selected": "normal | embedding d=10 | q=0.9 m=2 rho=0.5 nu=0.5",
+      "train_balanced": 0.7125563584707554,
+      "old_window": "W=2 m=1 rho=0.5 nu=0.1 initiator d=5"
+    },
+    {
+      "fold": 2,
+      "selected": "normal | embedding d=10 | q=0.8 m=2 rho=0.5 nu=0.5",
+      "train_balanced": 0.7135854341736695,
+      "old_window": "W=2 m=1 rho=0.5 nu=0.1 initiator d=5"
+    },
+    {
+      "fold": 3,
+      "selected": "normal | embedding d=10 | q=0.9 m=2 rho=0.5 nu=0.5",
+      "train_balanced": 0.7018759955164887,
+      "old_window": "W=2 m=1 rho=0.5 nu=0.1 initiator d=5"
+    },
+    {
+      "fold": 4,
+      "selected": "normal | embedding d=10 | q=0.9 m=2 rho=0.5 nu=0.5",
+      "train_balanced": 0.6953405017921147,
+      "old_window": "W=2 m=1 rho=0.5 nu=0.1 initiator d=5"
+    }
+  ],
+  "official_old_window": {
+    "reference": "dialogue",
+    "window": 2,
+    "m": 1,
+    "rho": 0.5,
+    "nu": 0.1,
+    "gamma": "scale",
+    "speakers": "initiator",
+    "dims": 5
+  }
+}

@@ -1,0 +1,405 @@
+{
+  "mode": "REAL",
+  "prompt_version": "cmot-v2.0",
+  "config": {
+    "seed": 2026,
+    "output_dir": "results",
+    "cache_dir": "cache",
+    "api": {
+      "base_url": "https://api-main.aiml.asu.edu",
+      "token_env": "CREATEAI_SERVICE_TOKEN",
+      "timeout_s": 180,
+      "max_retries": 6,
+      "budget_usd": 80
+    },
+    "data": {
+      "dir": "data/seconvo"
+    },
+    "representations": {
+      "tfidf": {
+        "enabled": true,
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "max_features": 20000,
+        "svd_components": 10,
+        "fit_scope": [
+          "inductive",
+          "transductive"
+        ]
+      },
+      "embedding": {
+        "enabled": true,
+        "provider": "openai",
+        "model": "te3l",
+        "label": "te3-large"
+      }
+    },
+    "classical": {
+      "inner_folds": 5,
+      "n_jobs": 8,
+      "ensemble": {
+        "strategy": "fixed",
+        "members": [
+          "kNN",
+          "SVM",
+          "ImpKmeans"
+        ]
+      },
+      "primary_view": "te3-large"
+    },
+    "protocols": {
+      "official_split": true,
+      "external": {
+        "enabled": true
+      },
+      "repeated_cv": {
+        "enabled": true,
+        "n_splits": 5,
+        "n_repeats": 5
+      }
+    },
+    "llms": [
+      {
+        "key": "GPT-6 Sol",
+        "provider": "openai",
+        "model": "gpt6_sol",
+        "family": "OpenAI GPT (was ChatGPT/gpt-4)",
+        "price_in": 2.0,
+        "price_out": 10.0,
+        "supports_temperature": false,
+        "max_tokens": 3000
+      },
+      {
+        "key": "Claude 5 Sonnet",
+        "provider": "aws",
+        "model": "claude5_sonnet",
+        "family": "Anthropic Claude",
+        "price_in": 3.3,
+        "price_out": 16.5,
+        "supports_temperature": true,
+        "max_tokens": 600
+      },
+      {
+        "key": "Gemini 3.1 Pro",
+        "provider": "gcp-deepmind",
+        "model": "geminipro3_1",
+        "family": "Google Gemini",
+        "price_in": 2.0,
+        "price_out": 12.0,
+        "supports_temperature": true,
+        "max_tokens": 3000
+      },
+      {
+        "key": "Llama 4 Maverick",
+        "provider": "aws",
+        "model": "llama4_maverick-17b",
+        "family": "Meta LLaMA (was llama3.1-70b)",
+        "price_in": 0.24,
+        "price_out": 0.97,
+        "supports_temperature": true,
+        "max_tokens": 600,
+        "open_weights": true
+      },
+      {
+        "key": "gpt-oss-120b",
+        "provider": "aws",
+        "model": "gpt-oss-120b",
+        "family": "Open-weight reasoning (replaces DeepSeek)",
+        "price_in": 0.15,
+        "price_out": 0.6,
+        "supports_temperature": true,
+        "max_tokens": 3000,
+        "open_weights": true
+      },
+      {
+        "key": "Gemma 4 31B (ASU)",
+        "provider": "asu-air",
+        "model": "gemma4_31b_it",
+        "family": "Open-weight, ASU-hosted",
+        "price_in": 0.14,
+        "price_out": 0.4,
+        "supports_temperature": true,
+        "max_tokens": 600,
+        "open_weights": true
+      },
+      {
+        "key": "DeepSeek V4 Pro",
+        "provider": "deepseek",
+        "model": "deepseek-v4-pro",
+        "family": "DeepSeek (original family, direct API)",
+        "price_in": 1.32,
+        "price_out": 3.96,
+        "supports_temperature": true,
+        "max_tokens": 4000,
+        "open_weights": true,
+        "base_url": "https://api.deepseek.com",
+        "api_key_env": "DEEPSEEK_API_KEY"
+      },
+      {
+        "key": "GPT-6 Luna",
+        "provider": "openai",
+        "model": "gpt6_luna",
+        "family": "OpenAI GPT small",
+        "price_in": 0.1,
+        "price_out": 0.5,
+        "supports_temperature": false,
+        "max_tokens": 3000
+      },
+      {
+        "key": "Nova 2 Lite",
+        "provider": "aws",
+        "model": "nova2-lite",
+        "family": "Amazon Nova",
+        "price_in": 0.33,
+        "price_out": 2.75,
+        "supports_temperature": true,
+        "max_tokens": 1000
+      },
+      {
+        "key": "Llama 4 Scout (ASU)",
+        "provider": "asu-air",
+        "model": "llama4_scout-17b",
+        "family": "Meta LLaMA, ASU-hosted",
+        "price_in": 0.08,
+        "price_out": 0.3,
+        "supports_temperature": true,
+        "max_tokens": 600,
+        "open_weights": true
+      }
+    ],
+    "llm_settings": {
+      "temperature": 0.0,
+      "repeats": 1,
+      "max_workers": 8,
+      "max_chars": 20000,
+      "invalid_policy": "benign",
+      "fewshot": {
+        "enabled": true,
+        "k": 4
+      }
+    },
+    "statistics": {
+      "bootstrap": 2000,
+      "random_routing_draws": 200
+    },
+    "phase2": {
+      "joint_ensemble": "inner_cv",
+      "view_scope": "transductive",
+      "primary_reference": "dialogue",
+      "localization_tolerance": 2,
+      "exclude_judges": [
+        "DeepSeek V4 Pro"
+      ],
+      "external_judges": [
+        "Gemma 4 31B (ASU)",
+        "Llama 4 Maverick",
+        "GPT-6 Luna",
+        "gpt-oss-120b",
+        "Llama 4 Scout (ASU)"
+      ],
+      "ocdd": {
+        "design": [
+          "normal",
+          "opening"
+        ],
+        "q": [
+          0.5,
+          0.7,
+          0.8,
+          0.9,
+          0.95
+        ],
+        "m_rho": [
+          [
+            1,
+            1.0
+          ],
+          [
+            2,
+            0.5
+          ],
+          [
+            2,
+            1.0
+          ]
+        ],
+        "nu": [
+          0.1,
+          0.5
+        ],
+        "tfidf_dims": [
+          5,
+          10,
+          20
+        ],
+        "emb_dims": [
+          10,
+          20,
+          50
+        ],
+        "outer_folds": 5
+      },
+      "ocdd_grid": {
+        "reference": [
+          "dialogue",
+          "pooled",
+          "hybrid"
+        ],
+        "window": [
+          2,
+          3,
+          4
+        ],
+        "m": [
+          1,
+          2
+        ],
+        "rho": [
+          0.5,
+          1.0
+        ],
+        "nu": [
+          0.1,
+          0.3,
+          0.5
+        ],
+        "speakers": [
+          "all",
+          "initiator"
+        ],
+        "dims": [
+          5,
+          10,
+          20
+        ]
+      }
+    }
+  },
+  "environment": {
+    "python": "3.13.11 | packaged by Anaconda, Inc. | (main, Dec 10 2025, 21:21:58) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 158 Stepping 13, GenuineIntel",
+    "machine": "AMD64",
+    "cpu_count": 12,
+    "packages": {
+      "numpy": "2.5.4",
+      "pandas": "3.0.6",
+      "scipy": "1.18.1",
+      "sklearn": "1.9.1",
+      "matplotlib": "3.11.2",
+      "requests": "2.34.2",
+      "yaml": "6.0.3",
+      "xgboost": "3.4.1"
+    },
+    "timestamp_utc": "2026-10-17T22:48:06Z",
+    "ram_gb": 17.1
+  },
+  "n_conversations": 400,
+  "official_split": [
+    40,
+    360
+  ],
+  "joint_ensemble": {
+    "view": "TF-IDF+SVD (transductive)",
+    "selection": "inner_cv",
+    "members": [
+      "SVM",
+      "Random Forest",
+      "kNN"
+    ]
+  },
+  "phase2_ocdd": {
+    "official": "normal | embedding d=20 | q=0.5 m=2 rho=1.0 nu=0.1",
+    "cv": [
+      "normal | embedding d=10 | q=0.9 m=2 rho=0.5 nu=0.5",
+      "normal | embedding d=10 | q=0.9 m=2 rho=0.5 nu=0.5",
+      "normal | embedding d=10 | q=0.8 m=2 rho=0.5 nu=0.5",
+      "normal | embedding d=10 | q=0.9 m=2 rho=0.5 nu=0.5",
+      "normal | embedding d=10 | q=0.9 m=2 rho=0.5 nu=0.5"
+    ]
+  },
+  "phase2_judges": [
+    "GPT-6 Sol",
+    "Claude 5 Sonnet",
+    "Gemini 3.1 Pro",
+    "Llama 4 Maverick",
+    "gpt-oss-120b",
+    "Gemma 4 31B (ASU)",
+    "GPT-6 Luna",
+    "Nova 2 Lite",
+    "Llama 4 Scout (ASU)"
+  ],
+  "llm_spend_this_run_usd": 1.5575956899999974,
+  "budget_hit": false,
+  "llm_cache_entries": 29104,
+  "models_returned": {
+    "Claude 5 Sonnet": [
+      "aws/claude5_sonnet"
+    ],
+    "DeepSeek V4 Pro": [
+      "deepseek-v4-pro"
+    ],
+    "GPT-6 Luna": [
+      "openai/gpt6_luna"
+    ],
+    "GPT-6 Sol": [
+      "openai/gpt6_sol"
+    ],
+    "Gemini 3.1 Pro": [
+      "gcp-deepmind/geminipro3_1"
+    ],
+    "Gemma 4 31B (ASU)": [
+      "asu-air/gemma4_31b_it"
+    ],
+    "Llama 4 Maverick": [
+      "aws/llama4_maverick-17b"
+    ],
+    "Llama 4 Scout (ASU)": [
+      "asu-air/llama4_scout-17b"
+    ],
+    "Nova 2 Lite": [
+      "aws/nova2-lite"
+    ],
+    "gpt-oss-120b": [
+      "aws/gpt-oss-120b"
+    ]
+  },
+  "external": {
+    "n_external": 1000,
+    "llm_models": [
+      "GPT-6 Sol",
+      "Claude 5 Sonnet",
+      "Gemini 3.1 Pro",
+      "Llama 4 Maverick",
+      "gpt-oss-120b",
+      "Gemma 4 31B (ASU)",
+      "DeepSeek V4 Pro",
+      "GPT-6 Luna",
+      "Nova 2 Lite",
+      "Llama 4 Scout (ASU)"
+    ],
+    "phase2_judges": [
+      "Llama 4 Maverick",
+      "gpt-oss-120b",
+      "Gemma 4 31B (ASU)",
+      "GPT-6 Luna",
+      "Llama 4 Scout (ASU)"
+    ],
+    "budget_hit": false
+  },
+  "figures": [
+    "fig9_external_phase1",
+    "fig10_external_phase2",
+    "fig1_official_phase1",
+    "figS1_classical_all_views",
+    "fig2_cv_distribution",
+    "fig5_phase2_joint_vs_dual",
+    "fig6_cost_accuracy",
+    "figS2_extra_routing_curves",
+    "figS3_confusion_matrices",
+    "figS4_accuracy_by_ambiguity"
+  ]
+}

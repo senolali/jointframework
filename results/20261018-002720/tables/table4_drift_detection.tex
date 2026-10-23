@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{Drift detection against the annotated first PII request: official split (selection on 40 training dialogues) and 5-fold CV over the 400 annotated dialogues (selection inside each training fold). Localized = drift flagged at or up to 2 messages after the onset.}
+\label{tab:table4_drift_detection}
+\small
+\begin{tabular}{lcccccccc}
+\toprule
+\textbf{protocol} & \textbf{detector} & \textbf{detect rate} & \textbf{localized rate} & \textbf{false drift rate} & \textbf{balanced} & \textbf{balanced lo} & \textbf{balanced hi} & \textbf{median delay} \\
+\midrule
+official & OCDD (normal reference) & 0.926 & 0.647 & 0.675 & 0.486 & 0.428 & 0.543 & 2.000 \\
+cv & OCDD (normal reference) & 0.934 & 0.775 & 0.345 & 0.715 & 0.656 & 0.770 & 2.000 \\
+official & Within-dialogue window & 0.996 & 0.887 & 0.987 & 0.450 & 0.428 & 0.473 & 2.000 \\
+cv & Within-dialogue window & 0.997 & 0.873 & 0.988 & 0.443 & 0.420 & 0.466 & 2.000 \\
+official & Fixed message-4 rule & 1.000 & 0.883 & 0.987 & 0.448 & 0.426 & 0.471 & 2.000 \\
+cv & Fixed message-4 rule & 1.000 & 0.870 & 0.988 & 0.441 & 0.418 & 0.464 & 2.000 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,103 @@
+workflow,judge,outcome,fraudulent,genuine,none
+Dual-LLM,Claude 5 Sonnet,fraudulent,126,39,1
+Dual-LLM,Claude 5 Sonnet,genuine drift,75,18,1
+Dual-LLM,Claude 5 Sonnet,real,9,47,82
+Dual-LLM,Claude 5 Sonnet,spam-like (no drift),2,0,0
+Dual-LLM,GPT-6 Luna,fraudulent,185,56,4
+Dual-LLM,GPT-6 Luna,genuine drift,16,4,0
+Dual-LLM,GPT-6 Luna,real,9,42,80
+Dual-LLM,GPT-6 Luna,spam-like (no drift),2,2,0
+Dual-LLM,GPT-6 Sol,fraudulent,192,57,2
+Dual-LLM,GPT-6 Sol,genuine drift,4,0,0
+Dual-LLM,GPT-6 Sol,real,14,47,82
+Dual-LLM,GPT-6 Sol,spam-like (no drift),2,0,0
+Dual-LLM,Gemini 3.1 Pro,fraudulent,175,53,2
+Dual-LLM,Gemini 3.1 Pro,genuine drift,21,2,1
+Dual-LLM,Gemini 3.1 Pro,real,13,46,79
+Dual-LLM,Gemini 3.1 Pro,spam-like (no drift),3,3,2
+Dual-LLM,Gemma 4 31B (ASU),fraudulent,185,45,0
+Dual-LLM,Gemma 4 31B (ASU),genuine drift,1,1,0
+Dual-LLM,Gemma 4 31B (ASU),real,24,58,84
+Dual-LLM,Gemma 4 31B (ASU),spam-like (no drift),2,0,0
+Dual-LLM,Llama 4 Maverick,fraudulent,185,52,4
+Dual-LLM,Llama 4 Maverick,genuine drift,11,7,1
+Dual-LLM,Llama 4 Maverick,real,14,45,78
+Dual-LLM,Llama 4 Maverick,spam-like (no drift),2,0,1
+Dual-LLM,Llama 4 Scout (ASU),fraudulent,157,43,3
+Dual-LLM,Llama 4 Scout (ASU),genuine drift,8,1,0
+Dual-LLM,Llama 4 Scout (ASU),real,45,60,81
+Dual-LLM,Llama 4 Scout (ASU),spam-like (no drift),2,0,0
+Dual-LLM,Nova 2 Lite,fraudulent,76,19,0
+Dual-LLM,Nova 2 Lite,genuine drift,5,1,0
+Dual-LLM,Nova 2 Lite,real,70,79,84
+Dual-LLM,Nova 2 Lite,spam-like (no drift),1,0,0
+Dual-LLM,Nova 2 Lite,unjudged,60,5,0
+Dual-LLM,gpt-oss-120b,fraudulent,150,38,0
+Dual-LLM,gpt-oss-120b,genuine drift,2,2,0
+Dual-LLM,gpt-oss-120b,real,58,64,84
+Dual-LLM,gpt-oss-120b,spam-like (no drift),2,0,0
+Joint,Claude 5 Sonnet,fraudulent,116,10,3
+Joint,Claude 5 Sonnet,genuine drift,71,10,4
+Joint,Claude 5 Sonnet,real,22,82,77
+Joint,Claude 5 Sonnet,spam-like (no drift),3,2,0
+Joint,GPT-6 Luna,fraudulent,170,18,4
+Joint,GPT-6 Luna,genuine drift,17,2,3
+Joint,GPT-6 Luna,real,22,82,77
+Joint,GPT-6 Luna,spam-like (no drift),3,2,0
+Joint,GPT-6 Sol,fraudulent,181,20,5
+Joint,GPT-6 Sol,genuine drift,6,0,2
+Joint,GPT-6 Sol,real,22,82,77
+Joint,GPT-6 Sol,spam-like (no drift),3,2,0
+Joint,Gemini 3.1 Pro,fraudulent,166,20,2
+Joint,Gemini 3.1 Pro,genuine drift,21,0,5
+Joint,Gemini 3.1 Pro,real,22,82,77
+Joint,Gemini 3.1 Pro,spam-like (no drift),3,2,0
+Joint,Gemma 4 31B (ASU),fraudulent,186,20,6
+Joint,Gemma 4 31B (ASU),genuine drift,1,0,1
+Joint,Gemma 4 31B (ASU),real,22,82,77
+Joint,Gemma 4 31B (ASU),spam-like (no drift),3,2,0
+Joint,Llama 4 Maverick,fraudulent,172,16,4
+Joint,Llama 4 Maverick,genuine drift,15,4,3
+Joint,Llama 4 Maverick,real,22,82,77
+Joint,Llama 4 Maverick,spam-like (no drift),3,2,0
+Joint,Llama 4 Scout (ASU),fraudulent,173,19,6
+Joint,Llama 4 Scout (ASU),genuine drift,14,1,1
+Joint,Llama 4 Scout (ASU),real,22,82,77
+Joint,Llama 4 Scout (ASU),spam-like (no drift),3,2,0
+Joint,Nova 2 Lite,fraudulent,88,12,1
+Joint,Nova 2 Lite,genuine drift,28,2,5
+Joint,Nova 2 Lite,real,22,82,77
+Joint,Nova 2 Lite,spam-like (no drift),3,2,0
+Joint,Nova 2 Lite,unjudged,71,6,1
+Joint,gpt-oss-120b,fraudulent,164,14,4
+Joint,gpt-oss-120b,genuine drift,23,6,3
+Joint,gpt-oss-120b,real,22,82,77
+Joint,gpt-oss-120b,spam-like (no drift),3,2,0
+Joint (no OCDD),Claude 5 Sonnet,fraudulent,116,12,3
+Joint (no OCDD),Claude 5 Sonnet,genuine drift,74,10,4
+Joint (no OCDD),Claude 5 Sonnet,real,22,82,77
+Joint (no OCDD),GPT-6 Luna,fraudulent,173,20,4
+Joint (no OCDD),GPT-6 Luna,genuine drift,17,2,3
+Joint (no OCDD),GPT-6 Luna,real,22,82,77
+Joint (no OCDD),GPT-6 Sol,fraudulent,183,21,5
+Joint (no OCDD),GPT-6 Sol,genuine drift,7,1,2
+Joint (no OCDD),GPT-6 Sol,real,22,82,77
+Joint (no OCDD),Gemini 3.1 Pro,fraudulent,168,22,2
+Joint (no OCDD),Gemini 3.1 Pro,genuine drift,22,0,5
+Joint (no OCDD),Gemini 3.1 Pro,real,22,82,77
+Joint (no OCDD),Gemma 4 31B (ASU),fraudulent,189,22,6
+Joint (no OCDD),Gemma 4 31B (ASU),genuine drift,1,0,1
+Joint (no OCDD),Gemma 4 31B (ASU),real,22,82,77
+Joint (no OCDD),Llama 4 Maverick,fraudulent,175,16,4
+Joint (no OCDD),Llama 4 Maverick,genuine drift,15,6,3
+Joint (no OCDD),Llama 4 Maverick,real,22,82,77
+Joint (no OCDD),Llama 4 Scout (ASU),fraudulent,175,21,6
+Joint (no OCDD),Llama 4 Scout (ASU),genuine drift,15,1,1
+Joint (no OCDD),Llama 4 Scout (ASU),real,22,82,77
+Joint (no OCDD),Nova 2 Lite,fraudulent,89,13,1
+Joint (no OCDD),Nova 2 Lite,genuine drift,29,3,5
+Joint (no OCDD),Nova 2 Lite,real,22,82,77
+Joint (no OCDD),Nova 2 Lite,unjudged,72,6,1
+Joint (no OCDD),gpt-oss-120b,fraudulent,167,14,4
+Joint (no OCDD),gpt-oss-120b,genuine drift,23,8,3
+Joint (no OCDD),gpt-oss-120b,real,22,82,77
