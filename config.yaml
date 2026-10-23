@@ -1,0 +1,111 @@
+# CMOT joint fraud/drift framework -- full experimental configuration.
+# Everything reported in the paper is produced from this file by `python run_all.py`.
+
+seed: 2026
+output_dir: results            # a timestamped sub-folder is created per run
+cache_dir: cache               # LLM request log + embedding cache (re-runs are free)
+
+api:
+  base_url: https://api-main.aiml.asu.edu   # override with env CREATEAI_BASE_URL (POC/Beta)
+  token_env: CREATEAI_SERVICE_TOKEN         # service token is read from this env variable
+  timeout_s: 180
+  max_retries: 6
+  budget_usd: 80          # hard stop for NEW spend in one run (cache hits are free)
+
+data:
+  dir: data/seconvo       # downloaded automatically from Zenodo (MD5-verified)
+
+representations:
+  tfidf:
+    enabled: true
+    ngram_range: [1, 2]
+    min_df: 2
+    max_features: 20000
+    svd_components: 10    # low-rank LSA; capped at n_fit - 1
+    fit_scope: [inductive, transductive]   # both reported; transductive = original setting (texts only, no labels)
+  embedding:
+    enabled: true
+    provider: openai
+    model: te3l           # text-embedding-3-large via CreateAI /v1/embeddings
+    label: "te3-large"
+
+classical:
+  inner_folds: 5
+  n_jobs: 8              # parallel workers for classical model tuning
+  ensemble:
+    strategy: fixed                      # fixed = kNN, SVM, ImpKmeans; also reported: inner_cv top-3
+    members: [kNN, SVM, ImpKmeans]
+  primary_view: te3-large                # part of the classical-results cache key
+
+protocols:
+  official_split: true    # SEConvo release split, 40 train / 360 test
+  external:
+    enabled: true         # train on the 400 annotated, test on the 1,000 disjoint SEConvo conversations
+  repeated_cv:
+    enabled: true
+    n_splits: 5
+    n_repeats: 5          # 25 train/test folds over all 400 annotated conversations
+
+# --------------------------------------------------------------------------
+# LLMs (ASU CreateAI catalog, Oct 2026): current models of the major families plus
+# open-weight models (some hosted on ASU infrastructure).
+# Prices: USD per 1M tokens from the catalog; used for cost accounting.
+# DeepSeek is not offered by CreateAI; it is called through its own API (see below).
+llms:
+  - {key: "GPT-6 Sol",          provider: openai,       model: gpt6_sol,            family: "OpenAI GPT (was ChatGPT/gpt-4)", price_in: 2.00, price_out: 10.00, supports_temperature: false, max_tokens: 3000}
+  - {key: "Claude 5 Sonnet",    provider: aws,          model: claude5_sonnet,      family: "Anthropic Claude",              price_in: 3.30, price_out: 16.50, supports_temperature: true,  max_tokens: 600}
+  - {key: "Gemini 3.1 Pro",     provider: gcp-deepmind, model: geminipro3_1,        family: "Google Gemini",                 price_in: 2.00, price_out: 12.00, supports_temperature: true,  max_tokens: 3000}
+  - {key: "Llama 4 Maverick",   provider: aws,          model: llama4_maverick-17b, family: "Meta LLaMA (was llama3.1-70b)", price_in: 0.24, price_out: 0.97,  supports_temperature: true,  max_tokens: 600, open_weights: true}
+  - {key: "gpt-oss-120b",       provider: aws,          model: gpt-oss-120b,        family: "Open-weight reasoning (replaces DeepSeek)", price_in: 0.15, price_out: 0.60, supports_temperature: true, max_tokens: 3000, open_weights: true}
+  - {key: "Gemma 4 31B (ASU)",  provider: asu-air,      model: gemma4_31b_it,       family: "Open-weight, ASU-hosted",       price_in: 0.14, price_out: 0.40,  supports_temperature: true,  max_tokens: 600, open_weights: true}
+  # DeepSeek via its own OpenAI-compatible API (not offered by CreateAI); key in .env as DEEPSEEK_API_KEY.
+  # Prices: peak-hour list price (conservative; off-peak is half).
+  - {key: "DeepSeek V4 Pro",    provider: deepseek,     model: deepseek-v4-pro,     family: "DeepSeek (original family, direct API)", price_in: 1.32, price_out: 3.96, supports_temperature: true, max_tokens: 4000, open_weights: true, base_url: "https://api.deepseek.com", api_key_env: DEEPSEEK_API_KEY}
+  # Additional low-cost models (added 2026-10-17): small OpenAI model, Amazon, second ASU-hosted open model
+  - {key: "GPT-6 Luna",         provider: openai,       model: gpt6_luna,           family: "OpenAI GPT small",              price_in: 0.10, price_out: 0.50,  supports_temperature: false, max_tokens: 3000}
+  - {key: "Nova 2 Lite",        provider: aws,          model: nova2-lite,          family: "Amazon Nova",                   price_in: 0.33, price_out: 2.75,  supports_temperature: true,  max_tokens: 1000}
+  - {key: "Llama 4 Scout (ASU)", provider: asu-air,     model: llama4_scout-17b,    family: "Meta LLaMA, ASU-hosted",        price_in: 0.08, price_out: 0.30,  supports_temperature: true,  max_tokens: 600, open_weights: true}
+  # Optional extras (uncomment): fallbacks
+  # - {key: "Claude 4.5 Sonnet",provider: aws,          model: claude4_5_sonnet,    family: "Anthropic Claude",  price_in: 3.30, price_out: 16.50, supports_temperature: true, max_tokens: 600}
+
+llm_settings:
+  temperature: 0.0        # explicit; replaces the undocumented 0.7 of the original runs
+  repeats: 1              # >1 = self-consistency + run-to-run agreement statistics
+  max_workers: 8          # parallel API requests (well below the 750k TPM project limit)
+  max_chars: 20000
+  invalid_policy: benign  # unparseable outputs are counted as 'benign' and reported
+  fewshot:
+    enabled: true         # official split only; examples drawn from the 40 training conversations
+    k: 4
+
+statistics:
+  bootstrap: 2000
+  random_routing_draws: 200
+
+# --------------------------------------------------------------------------
+# Phase 2 (within-dialogue): flagged conversation -> OCDD over its messages
+# -> no drift: spam-like | drift: LLM judge -> fraudulent / genuine drift.
+# Joint = ensemble Phase 1; Dual-LLM = the same LLM in Phase 1 and as judge.
+phase2:
+  joint_ensemble: inner_cv  # majority vote of the 3 best models, ranked by inner CV on train (fixed = kNN+SVM+ImpKmeans)
+  view_scope: transductive  # TF-IDF + SVD fitted on texts only (no labels)
+  primary_reference: dialogue   # window-reference variant used for comparison; the primary detector is phase2.ocdd
+  localization_tolerance: 2     # drift counted as localized if flagged 0..2 messages after the annotated onset
+  exclude_judges: ["DeepSeek V4 Pro"]   # no remaining API credit; its Phase-1 results stay (cached)
+  external_judges: ["Gemma 4 31B (ASU)", "Llama 4 Maverick", "GPT-6 Luna", "gpt-oss-120b", "Llama 4 Scout (ASU)"]
+  ocdd:                     # primary drift detector (cmot/ocdd_normal.py), selected on training dialogues only
+    design: [normal, opening]
+    q: [0.5, 0.7, 0.8, 0.9, 0.95]
+    m_rho: [[1, 1.0], [2, 0.5], [2, 1.0]]
+    nu: [0.1, 0.5]
+    tfidf_dims: [5, 10, 20]
+    emb_dims: [10, 20, 50]
+    outer_folds: 5          # nested cross-fitting inside the training dialogues
+  ocdd_grid:                # previous within-dialogue window design (comparison only)
+    reference: [dialogue, pooled, hybrid]
+    window: [2, 3, 4]
+    m: [1, 2]
+    rho: [0.5, 1.0]
+    nu: [0.1, 0.3, 0.5]
+    speakers: [all, initiator]
+    dims: [5, 10, 20]

@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper below."
+title: "Joint Detection of Fraud and Concept Drift in Online Conversations"
+license: MIT
+repository-code: "https://github.com/senolali/jointframework"
+authors:
+  - family-names: "Şenol"
+    given-names: "Ali"
+  - family-names: "Agrawal"
+    given-names: "Garima"
+  - family-names: "Liu"
+    given-names: "Huan"
+preferred-citation:
+  type: article
+  title: "Joint Detection of Fraud and Concept Drift in Online Conversations with LLM-Assisted Judgment"
+  authors:
+    - family-names: "Şenol"
+      given-names: "Ali"
+    - family-names: "Agrawal"
+      given-names: "Garima"
+    - family-names: "Liu"
+      given-names: "Huan"
+  journal: "arXiv preprint"
+  year: 2025
+  identifiers:
+    - type: other
+      value: "arXiv:2505.07852"
+  url: "https://arxiv.org/abs/2505.07852"
